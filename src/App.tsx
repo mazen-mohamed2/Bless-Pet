@@ -4,6 +4,7 @@ import Pets from './pages/Pets';
 import PetDetails from './pages/PetDetails';
 import { AuthProvider, useAuth } from './lib/auth';
 import { ToastProvider } from './lib/toast';
+import { HashRouter } from 'react-router-dom';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { token } = useAuth();
@@ -16,6 +17,8 @@ export default function App() {
   return (
     <AuthProvider>
       <ToastProvider>
+                <HashRouter>
+
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -38,6 +41,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
+        </HashRouter>
       </ToastProvider>
     </AuthProvider>
   );
